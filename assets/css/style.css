@@ -2,18 +2,54 @@ body {
 
 }
 
-button {
-	margin-right: 10px;
-	margin-bottom: 10px;
-}
-
-img {
-	width: 200px;
+button, 
+#submitButton {
 	margin-right: 10px;
 	margin-bottom: 10px;
 	cursor: pointer;
+	background-color: #486BD6;
+	color: white;
+	padding: 10px;
+	font-size: 15px;
+	font-weight: bold;
+}
+
+img {
+	height: 200px;
+	margin-right: 10px;
+	margin-bottom: 10px;
+	margin-top: 10px;
+	cursor: pointer;
+	border: solid 2px black;
 }
 
 form {
+	margin-top: 20px;
 	margin-bottom: 20px;
 }
+
+#submitButton {
+	font-size: 15px;
+	width: 100px;
+	background-color: #3CA232;
+}
+
+#disneyInput {
+	width: 350px;
+	height: 32px;
+	margin-right: 10px;
+	font-size: 20px;
+}
+
+#viewMore {
+	display: none;
+	background-color: #A5A5A5;
+}
+
+.imgFloat {
+	float: left;
+	font-size: 20px;
+	margin-bottom: 20px;
+	margin-right: 20px;
+}
+

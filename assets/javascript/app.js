@@ -3,6 +3,13 @@
 var topics = ["minions", "moana", "incredibles", "frozen", "zootopia", "inside out", "finding dory", "finding nemo", "big hero 6", "tangled", "monsters, inc.", "lion king", "mulan", "toy story", "lilo & stitch", "tarzan", "aladdin", "little mermaid", "cinderella", "disney peter pan", "pocahontas", "beauty and the beast", "sleeping beauty", "pinocchio", "bambi", "disney snow white"];
 var buttons;
 var userInput;
+var name;
+var queryURL;
+var img;
+var imgDiv;
+var rating;
+var k;
+var tenMore;
 
 // create array buttons
 	for (var i = 0; i < topics.length; i++) {
@@ -30,7 +37,7 @@ var userInput;
 	});
 
 // clicks = 10 times (10 pictures at a time)
-	for (var j = 0; j < 10; j++) {
+	// for (var j = 0; j < 10; j++) {
 
 // get giphys and display them
 	$(document).on('click', '.click', function() {
@@ -38,18 +45,16 @@ var userInput;
 	  	event.preventDefault();
 	    console.log($(this).text());
 	    $('#disneyImg').text("");
+	    $('#end').text("");
+		k = 0;
+		tenMore = 0;
+	    name = $(this).text();
 
-	    var name = $(this).text();
-	    // var queryURL = "https://api.giphy.com/v1/gifs/random?api_key=dc6zaTOxFJmzC&limit=10&tag=" + name + "";
-
-	    var queryURL = "https://api.giphy.com/v1/gifs/random?api_key=dc6zaTOxFJmzC&rating=pg-13&tag=" + name + "";
-
-	    // var queryURL = "http://api.giphy.com/v1/gifs/search?q=" + name + "&api_key=dc6zaTOxFJmzC&rating=pg-13&limit=100&offset=10";
+	    // random without rating
+	    // var queryURL = "https://api.giphy.com/v1/gifs/random?api_key=dc6zaTOxFJmzC&rating=pg-13&tag=" + name + "";
 
 	    // with rating
-	     // var queryURL = "http://api.giphy.com/v1/gifs/search?q=" + name + "&limit=100&api_key=dc6zaTOxFJmzC";
-
-
+	    queryURL = "https://api.giphy.com/v1/gifs/search?api_key=od0jQj4UuZbCYytiWKpSKAF5CVaNwZo0&q=" + name + "&limit=100";
 
 	  	$.ajax({
 	  		url: queryURL,
@@ -57,24 +62,80 @@ var userInput;
 	  	}).then(function(response){
 	  		console.log(response);
 
-// for (var k = 0; k < 10; k++) {
-// 	  		console.log(response.data[k].images.original.url);
-// 	  		console.log(response.data[k].images.original_still.url);
+	  	// with rating
+		for (k = 0; k < 10; k++) {
+			console.log(k);
+	  		// console.log(response.data[k].images.original.url);
+	  		// console.log(response.data[k].images.original_still.url);
 
-// 	  		var img = $('<img>').attr({"still":response.data[k].images.original_still.url, "anime":response.data[k].images.original.url, "data-type":"still", "src":response.data[k].images.original_still.url, "alt":name + " images"});
-// 	  		$('#disneyImg').prepend(img);
-// }
+	  		img = $('<img>').attr(
+	  			{"still":response.data[k].images.original_still.url, 
+	  			"anime":response.data[k].images.original.url, 
+	  			"data-type":"still", 
+	  			"src":response.data[k].images.original_still.url, 
+	  			"alt":name + " images"
+	  			});
 
-			console.log(response.data.images.original.url);
-	  		console.log(response.data.images.original_still.url);
+	  		imgDiv = $('<div>').attr("class", "imgFloat");
+	  		rating = $('<span>');
+	  		rating.html('Rating: ' + response.data[k].rating + "<br>");
+	  		imgDiv.append(rating);
+	  		rating.append(img);
+	  		$('#disneyImg').prepend(imgDiv);
+		}
 
-	  		var img = $('<img>').attr({"still":response.data.images.original_still.url, "anime":response.data.images.original.url, "data-type":"still", "src":response.data.images.original_still.url, "alt":name + " images"});
-	  		$('#disneyImg').prepend(img);
+			// random without rating
+			// console.log(response.data.images.original.url);
+	  // 		console.log(response.data.images.original_still.url);
 
+	  // 		var img = $('<img>').attr({"still":response.data.images.original_still.url, "anime":response.data.images.original.url, "data-type":"still", "src":response.data.images.original_still.url, "alt":name + " images"});
+	  // 		$('#disneyImg').prepend(img);
+
+	  	$('#viewMore').show();
+
+// view more button	  	
+  		$(document).on('click', '#viewMore', function() {
+
+  			tenMore = k + 10;
+			console.log("tenMore: " + tenMore);
+			
+			if (k == 100) {
+				$('#viewMore').hide();
+				$('#end').text('That\'s the end of it. Take a look at the other tabs.');
+			}
+
+  			for (k = k; k < tenMore; k++) {
+
+				// if (k == 100) {
+				// 	$('#viewMore').hide();
+				// 	$('#end').text('That\'s the end of it');
+
+			  	if (k < 100) {
+			  		console.log(k);
+			  		// console.log(response.data[k].images.original.url);
+			  		// console.log(response.data[k].images.original_still.url);
+
+			  		img = $('<img>').attr(
+			  			{"still":response.data[k].images.original_still.url, 
+			  			"anime":response.data[k].images.original.url, 
+			  			"data-type":"still", 
+			  			"src":response.data[k].images.original_still.url, 
+			  			"alt":name + " images"
+			  			});
+
+			  		imgDiv = $('<div>').attr("class", "imgFloat");
+			  		rating = $('<span>');
+			  		rating.html('Rating: ' + response.data[k].rating + "<br>");
+			  		imgDiv.append(rating);
+			  		rating.append(img);
+			  		$('#disneyImg').prepend(imgDiv);
+			  	}
+			}
+  		});
 	  	});
 
 	  });
-	}
+	// }
 
 // anime & still giphys
 	$(document).on('click', 'img', function(){
