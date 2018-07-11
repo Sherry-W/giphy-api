@@ -1,27 +1,25 @@
-# JavaScript Assignment 2 - Trivia Game
+# GifTastic
 
 ### Overview
-
-In this assignment, we were asked to create create a Trivia game using JavaScript for the logic and jQuery to manipulate HTML. 
+ 
+In this assignment, we were asked to use the GIPHY API to make a dynamic web page that populates with gifs of our choice. To finish this task, we must call the GIPHY API and use JavaScript and jQuery to change the HTML of our site.
 
 ### My Theme
 
-Trivia Questions on Animals
-* [Questions were generated from: https://opentdb.com/api_config.php](https://opentdb.com/api_config.php)
+Disney Movies and/or Characters.
 
 ### How It Works
 
-* This trivia game shows only one question until the player answers it or their time runs out.
+* When the user clicks on a button, the page should grab 10 static, non-animated gif images from the GIPHY API and place them on the page.
 
-* If the player selects the correct answer, show a screen congratulating them for choosing the right option. After a few seconds, display the next question -- do this without user input.
+* When the user clicks one of the still GIPHY images, the gif should animate. If the user clicks the gif again, it should stop playing.
 
-* The scenario is similar for wrong answers and time-outs.
+* Under every gif, display its rating (PG, G, so on).
+   * This data is provided by the GIPHY API.
 
-  * If the player runs out of time, tell the player that time's up and display the correct answer. Wait a few seconds, then show the next question.
-  * If the player chooses the wrong answer, tell the player they selected the wrong option and then display the correct answer. Wait a few seconds, then show the next question.
+* User can input values from an input box and adds the button on the page.
 
-* On the final screen, show the number of correct answers, incorrect answers, and an option to restart the game (without reloading the page).
+* User can request additional gifs to be added to the page.
+   * Each request should ADD 10 gifs to the page, NOT overwrite the existing gifs.
 
-Please Enjoy the Game!
-
-![Game Page](/assets/images/Trivia_Game.JPG)
+![Game Page](/assets/images/Giphy_API.JPG)
